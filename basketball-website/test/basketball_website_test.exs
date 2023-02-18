@@ -169,6 +169,29 @@ defmodule BasketballWebsiteTest do
            ) == nil
   end
 
+  @tag task_id: 1
+  test "extract_from_path returns nil from path into value" do
+    team_data = %{
+      "coach" => %{},
+      "team_name" => "Hoop Masters",
+      "players" => %{
+        "12" => %{
+          "first_name" => "Andy",
+          "last_name" => "Napoli",
+          "email" => "anapoli7@goodreads.com",
+          "statistics" => %{
+            "average_points_per_game" => 7
+          }
+        }
+      }
+    }
+
+    assert BasketballWebsite.extract_from_path(
+             team_data,
+             "players.12.email.first"
+           ) == nil
+  end
+
   describe "get_in_path retrieves from" do
     @tag task_id: 2
     test "first layer" do
