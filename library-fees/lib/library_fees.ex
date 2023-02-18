@@ -5,11 +5,7 @@ defmodule LibraryFees do
     atom = dt
     |> NaiveDateTime.to_time()
     |> Time.compare(~T[12:00:00.000])
-
-    case atom do
-      :lt -> true
-      _ -> false
-    end
+    |> Kernel.==(:lt)
   end
 
   def return_date(dt) do
@@ -21,10 +17,9 @@ defmodule LibraryFees do
   end
 
   defp calculate_days(dt) do
-    if before_noon?(dt) do
-      28
-    else
-      29
+    case before_noon?(dt) do
+      true -> 28
+      false -> 29
     end
   end
 
@@ -57,10 +52,9 @@ defmodule LibraryFees do
   end
 
   defp get_discount(dt) do
-    if monday?(dt) do
-      0.5
-    else
-      0
+    case monday?(dt) do
+      true -> 0.5
+      false -> 0
     end
   end
 end
