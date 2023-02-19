@@ -2,7 +2,7 @@ defmodule LibraryFees do
   def datetime_from_string(string), do: NaiveDateTime.from_iso8601!(string)
 
   def before_noon?(dt) do
-    atom = dt
+    dt
     |> NaiveDateTime.to_time()
     |> Time.compare(~T[12:00:00.000])
     |> Kernel.==(:lt)
