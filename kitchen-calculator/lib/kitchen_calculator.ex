@@ -3,32 +3,6 @@ defmodule KitchenCalculator do
     elem(volume_pair, 1)
   end
 
-  # defp get_conversion_rate({unit, _} = pair) do
-  #   get_conversion_rate(unit)
-  # end
-
-  # defp get_conversion_rate(unit) do
-  #   cond do
-  #     unit == :cup -> 240
-  #     unit == :fluid_ounce -> 30
-  #     unit == :teaspoon -> 5
-  #     unit == :tablespoon -> 15
-  #     unit == :milliliter -> 1
-  #   end
-  # end
-
-  ## Pattern matching with case
-  # def to_milliliter(volume_pair) do
-  #   case volume_pair do
-  #     {:cup, volume} -> volume * 240
-  #     {:fluid_ounce, volume} -> volume * 30
-  #     {:teaspoon, volume} -> volume * 5
-  #     {:tablespoon, volume} -> volume * 15
-  #     {_, volume} -> volume
-  #   end
-  # end
-
-  # Pattern matchhing with the head
   def to_milliliter(volume_pair)
 
   def to_milliliter({:cup, volume} = _) do
