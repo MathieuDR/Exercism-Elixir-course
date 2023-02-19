@@ -4,12 +4,11 @@ defmodule RemoteControlCar do
 
   def new(nickname \\ "none"), do: %RemoteControlCar{nickname: nickname}
 
-  def display_distance(remote_car) when is_struct(remote_car, RemoteControlCar), do: "#{remote_car.distance_driven_in_meters} meters"
+  def display_distance(%RemoteControlCar{} = remote_car), do: "#{remote_car.distance_driven_in_meters} meters"
 
-  def display_battery(%{battery_percentage: 0} = car) when is_struct(car, RemoteControlCar), do: "Battery empty"
-  def display_battery(remote_car) when is_struct(remote_car, RemoteControlCar), do: "Battery at #{remote_car.battery_percentage}%"
+  def display_battery(%RemoteControlCar{battery_percentage: 0} = car), do: "Battery empty"
+  def display_battery(%RemoteControlCar{} = remote_car), do: "Battery at #{remote_car.battery_percentage}%"
 
-  def drive(%{battery_percentage: 0} = car) when is_struct(car, RemoteControlCar), do: car
-  def drive(car) when is_struct(car, RemoteControlCar), do: %{car | battery_percentage: car.battery_percentage - 1, distance_driven_in_meters: car.distance_driven_in_meters + 20}
-
+  def drive(%RemoteControlCar{battery_percentage: 0} = car), do: car
+  def drive(%RemoteControlCar{} = car), do: %{car | battery_percentage: car.battery_percentage - 1, distance_driven_in_meters: car.distance_driven_in_meters + 20}
 end
