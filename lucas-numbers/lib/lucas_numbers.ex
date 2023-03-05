@@ -9,6 +9,9 @@ defmodule LucasNumbers do
   @first 2
   @second 1
 
+  def generate(1), do: [@first]
+  def generate(2), do: [@first, @second]
+
   def generate(x) when is_integer(x) and x >= 1 do
     Stream.iterate({@first, @second}, fn {first, second} ->
       {second, first + second}
