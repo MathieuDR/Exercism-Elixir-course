@@ -1,10 +1,11 @@
 defmodule TakeANumberDeluxe do
+  use GenServer
   alias TakeANumberDeluxe.State
 
   # Client API
 
   @spec start_link(keyword()) :: {:ok, pid()} | {:error, atom()}
-  def start_link(init_arg), do: GenServer.start(__MODULE__, init_arg)
+  def start_link(init_arg), do: GenServer.start_link(__MODULE__, init_arg)
 
   @spec report_state(pid()) :: TakeANumberDeluxe.State.t()
   def report_state(machine), do: GenServer.call(machine, :get_state)
